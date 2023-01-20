@@ -25,6 +25,9 @@
         /// <returns></returns>
         public bool TryMakeMove(int x, int y);
 
-        public event EventHandler<WinEventArgs> OnWin;
+        /// <summary>
+        /// Event invoked when the game has ended
+        /// </summary>
+        public event EventHandler<GameEndEventArgs> OnGameEnd;
     }
 }
