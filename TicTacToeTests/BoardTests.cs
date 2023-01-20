@@ -61,8 +61,22 @@ namespace TicTacToeTests
             Assert.That(actual, Is.False);
 
             var actualCell = board.GetBoard()[0, 0];
-            Assert.That(actualCell, Is.EqualTo(expectedCell));          
+            Assert.That(actualCell, Is.EqualTo(expectedCell));       
 
         }
+
+        [Test]
+        public void TryMakeMove_SequentialAutoSelect_ReturnsOAfterX()
+        {
+            ITicTacToeBoard board = new TicTacBoard10();
+
+            board.TryMakeMove(0, 0);
+            var actual = board.GetBoard()[0, 0];
+            Assert.That(actual, Is.EqualTo(MoveEnum.X));
+            board.TryMakeMove(0, 1);
+            actual = board.GetBoard()[0, 1];
+            Assert.That(actual, Is.EqualTo(MoveEnum.O));
+        }
+
     }
 }
