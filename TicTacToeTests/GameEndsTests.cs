@@ -11,11 +11,11 @@ namespace TicTacToeTests
         }
 
         [Test]
-        public void OnWin_DrawCase_ReturnsDrawGameResult()
+        public void OnGameEnd_DrawCase_ReturnsDrawGameResult()
         {
             ITicTacToeBoard board = new TicTacBoard10();
             GameResultEnum? actual = null;
-            board.OnWin += (o, e) => actual = e.WinMove;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
             for (int i = 0; i < 4; i++)
             {
                 for (int j = 0; j < 10; j++)
@@ -39,11 +39,11 @@ namespace TicTacToeTests
         }
 
         [Test]
-        public void OnWin_VerticalLineXWin_ReturnsXWinGameResult()
+        public void OnGameEnd_VerticalLineXWin_ReturnsXWinGameResult()
         {
             ITicTacToeBoard board = new TicTacBoard10();
             GameResultEnum? actual = null;
-            board.OnWin += (o, e) => actual = e.WinMove;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
             for (int i = 0; i < 9; i++)
             {
                 board.TryMakeMove(i % 2, i / 2);
@@ -52,11 +52,11 @@ namespace TicTacToeTests
         }
 
         [Test]
-        public void OnWin_VerticalLineOWin_ReturnsOWinGameResult()
+        public void OnGameEnd_VerticalLineOWin_ReturnsOWinGameResult()
         {
             ITicTacToeBoard board = new TicTacBoard10();
             GameResultEnum? actual = null;
-            board.OnWin += (o, e) => actual = e.WinMove;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
             board.TryMakeMove(9, 9);
             for (int i = 0; i < 9; i++)
             {
@@ -66,11 +66,11 @@ namespace TicTacToeTests
         }
 
         [Test]
-        public void OnWin_HorizontalLineXWin_ReturnsXWinGameResult()
+        public void OnGameEnd_HorizontalLineXWin_ReturnsXWinGameResult()
         {
             ITicTacToeBoard board = new TicTacBoard10();
             GameResultEnum? actual = null;
-            board.OnWin += (o, e) => actual = e.WinMove;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
             for (int i = 0; i < 9; i++)
             {
                 board.TryMakeMove(i / 2, i % 2);
@@ -79,11 +79,11 @@ namespace TicTacToeTests
         }
 
         [Test]
-        public void OnWin_HorizontalLineOWin_ReturnsOWinGameResult()
+        public void OnGameEnd_HorizontalLineOWin_ReturnsOWinGameResult()
         {
             ITicTacToeBoard board = new TicTacBoard10();
             GameResultEnum? actual = null;
-            board.OnWin += (o, e) => actual = e.WinMove;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
             board.TryMakeMove(9, 9);
             for (int i = 0; i < 9; i++)
             {
