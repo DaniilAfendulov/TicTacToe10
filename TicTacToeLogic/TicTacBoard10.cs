@@ -174,7 +174,7 @@ namespace TicTacToeLogic
         }
         private int CountUpperLeft(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
             while (x - count - 1 >= minX && y + count + 1 <= maxY)
