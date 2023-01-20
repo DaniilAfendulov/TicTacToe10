@@ -76,7 +76,7 @@ namespace TicTacToeLogic
 
         private int CountLineUpper(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
             for (int i = y+1; i <= maxY; i++)
@@ -92,7 +92,7 @@ namespace TicTacToeLogic
         }
         private int CountLineLower(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
             for (int i = y - 1; i >= minY; i--)
@@ -113,7 +113,7 @@ namespace TicTacToeLogic
 
         private int CountRightLine(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
             for (int i = x + 1; i <= maxX; i++)
@@ -129,7 +129,7 @@ namespace TicTacToeLogic
         }
         private int CountLeftLine(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
             for (int i = x - 1; i >= minX; i--)
@@ -150,7 +150,7 @@ namespace TicTacToeLogic
 
         private int CountLowerRight(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
             while (x+count+1 <= maxX && y-count-1 >= minY)
@@ -169,7 +169,7 @@ namespace TicTacToeLogic
             if (CheckCoordinate(x, y)) return 0;
 
             int count = 0;
-            while (x - count - 1 <= maxX && y + count + 1 >= minY)
+            while (x - count - 1 >= minX && y + count + 1 <= maxY)
             {
                 if (_board[x - count - 1, y + count + 1] == move)
                 {
@@ -187,10 +187,10 @@ namespace TicTacToeLogic
 
         private int CountLowerLeft(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
-            while (x - count - 1 <= maxX && y - count - 1 >= minY)
+            while (x - count - 1 >= minX && y - count - 1 >= minY)
             {
                 if (_board[x - count - 1, y - count - 1] == move)
                 {
@@ -203,10 +203,10 @@ namespace TicTacToeLogic
         }
         private int CountUpperRight(int x, int y, MoveEnum move)
         {
-            if (CheckCoordinate(x, y)) return 0;
+            if (!CheckCoordinate(x, y)) return 0;
 
             int count = 0;
-            while (x + count + 1 <= maxX && y + count + 1 >= minY)
+            while (x + count + 1 <= maxX && y + count + 1 <= maxY)
             {
                 if (_board[x + count + 1, y + count + 1] == move)
                 {
@@ -247,6 +247,6 @@ namespace TicTacToeLogic
             return null;
         }
 
-        private bool CheckCoordinate(int x, int y) => (y > maxY || x > maxX || y < minY || x < minX);
+        private bool CheckCoordinate(int x, int y) => !(y > maxY || x > maxX || y < minY || x < minX);
     }
 }
