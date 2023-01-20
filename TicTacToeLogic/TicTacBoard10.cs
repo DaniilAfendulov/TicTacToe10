@@ -6,6 +6,7 @@ namespace TicTacToeLogic
     {
         MoveEnum?[,] _board;
         MoveEnum _lastStep = MoveEnum.O;
+        private bool _gameIsEnded = false;
 
         private int maxX = 9;
         private int maxY = 9;
@@ -16,9 +17,15 @@ namespace TicTacToeLogic
         public TicTacBoard10()
         {
             _board = new MoveEnum?[10,10];
+            OnGameEnd += OnGameEndHandler;
         }
 
-        public event EventHandler<WinEventArgs>? OnWin;
+        public event EventHandler<GameEndEventArgs> OnGameEnd;
+
+        private void OnGameEndHandler(object? source, GameEndEventArgs gameEndArgs)
+        {
+            _gameIsEnded = true;
+        }
 
         public MoveEnum?[,] GetBoard()
         {
@@ -27,12 +34,13 @@ namespace TicTacToeLogic
 
         public bool TryMakeMove(int x, int y, MoveEnum move)
         {
+            if (_gameIsEnded) return false;
             if (_board[x, y] is not null) return false;
             _board[x,y] = move;
             if (IsGameEnd(x, y, out GameResultEnum? gameResult))
             {
                 if(gameResult is not null)
-                    OnWin?.Invoke(this, new WinEventArgs((GameResultEnum)gameResult));
+                    OnGameEnd?.Invoke(this, new GameEndEventArgs((GameResultEnum)gameResult));
             }
 
             return true;
