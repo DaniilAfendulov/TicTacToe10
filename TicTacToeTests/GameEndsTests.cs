@@ -94,5 +94,122 @@ namespace TicTacToeTests
             }
             Assert.That(actual, Is.EqualTo(GameResultEnum.WinO));
         }
+
+        [Test]
+        public void OnGameEnd_DiagonalLineFromDownToUpXWin_ReturnsXWinGameResult()
+        {
+            ITicTacToeBoard board = new TicTacBoard10();
+            GameResultEnum? actual = null;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
+
+            var steps = new (int, int)[]
+            {
+                (0,0),
+                (1,0),
+                (1,1),
+                (1,2),
+                (2,2),
+                (2,3),
+                (3,3),
+                (3,4),
+                (4,4),
+                (4,5),
+                (5,5)
+            };
+            foreach (var step in steps)
+            {
+                board.TryMakeMove(step.Item1, step.Item2);
+            }           
+
+            Assert.That(actual, Is.EqualTo(GameResultEnum.WinX));
+        }
+
+        [Test]
+        public void OnGameEnd_DiagonalLineFromDownToUpOWin_ReturnsOWinGameResult()
+        {
+            ITicTacToeBoard board = new TicTacBoard10();
+            GameResultEnum? actual = null;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
+
+            var steps = new (int, int)[]
+            {
+                (9,9),
+                (0,0),
+                (1,0),
+                (1,1),
+                (1,2),
+                (2,2),
+                (2,3),
+                (3,3),
+                (3,4),
+                (4,4),
+                (4,5),
+                (5,5)
+            };
+            foreach (var step in steps)
+            {
+                board.TryMakeMove(step.Item1, step.Item2);
+            }
+
+            Assert.That(actual, Is.EqualTo(GameResultEnum.WinO));
+        }
+
+        [Test]
+        public void OnGameEnd_DiagonalLineFromUpToDownXWin_ReturnsXWinGameResult()
+        {
+            ITicTacToeBoard board = new TicTacBoard10();
+            GameResultEnum? actual = null;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
+
+            var steps = new (int, int)[]
+            {
+                (0,9),
+                (1,0),
+                (1,8),
+                (1,2),
+                (2,7),
+                (2,3),
+                (3,6),
+                (3,4),
+                (4,5),
+                (4,5),
+                (5,4)
+            };
+            foreach (var step in steps)
+            {
+                board.TryMakeMove(step.Item1, step.Item2);
+            }
+
+            Assert.That(actual, Is.EqualTo(GameResultEnum.WinX));
+        }
+
+        [Test]
+        public void OnGameEnd_DiagonalLineFromUpToDownOWin_ReturnsOWinGameResult()
+        {
+            ITicTacToeBoard board = new TicTacBoard10();
+            GameResultEnum? actual = null;
+            board.OnGameEnd += (o, e) => actual = e.FinalMove;
+
+            var steps = new (int, int)[]
+            {
+                (9,9),
+                (0,9),
+                (1,0),
+                (1,8),
+                (1,2),
+                (2,7),
+                (2,3),
+                (3,6),
+                (3,4),
+                (4,5),
+            };
+            foreach (var step in steps)
+            {
+                board.TryMakeMove(step.Item1, step.Item2);
+            }
+
+            Assert.That(actual, Is.EqualTo(GameResultEnum.WinO));
+        }
+
     }
 }
