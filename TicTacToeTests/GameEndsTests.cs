@@ -23,7 +23,7 @@ namespace TicTacToeTests
                     board.TryMakeMove(i, j);
                 }
             }
-            for (int i = 0; i < 9; i++)
+            for (int i = 0; i < 8; i++)
             {
                 for (int j = 1; j < 10; j++)
                 {
@@ -31,9 +31,12 @@ namespace TicTacToeTests
                 }
                 board.TryMakeMove(i, 0);
             }
-            for (int j = 0; j < 10; j++)
+            for (int i = 0; i < 10; i++)
             {
-                board.TryMakeMove(9, j);
+                for (int j = 0; j < 10; j++)
+                {
+                    board.TryMakeMove(i, j);
+                }
             }
             Assert.That(actual, Is.EqualTo(GameResultEnum.Draw));
         }
