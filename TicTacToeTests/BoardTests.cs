@@ -3,7 +3,7 @@ using TicTacToeLogic.Interfaces;
 
 namespace TicTacToeTests
 {
-    public class BoardTests
+    internal class BoardTests
     {
         [SetUp]
         public void Setup()
@@ -77,6 +77,7 @@ namespace TicTacToeTests
             actual = board.GetBoard()[0, 1];
             Assert.That(actual, Is.EqualTo(MoveEnum.O));
         }
+
 
     }
 }
