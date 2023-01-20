@@ -24,5 +24,7 @@
         /// <param name="y">y-coordinate</param>
         /// <returns></returns>
         public bool TryMakeMove(int x, int y);
+
+        public event EventHandler<WinEventArgs> OnWin;
     }
 }
