@@ -25,8 +25,8 @@ namespace TicTacToeLogic
 
         public bool TryMakeMove(int x, int y)
         {
-            var move = _lastStep == MoveEnum.O ? MoveEnum.X : MoveEnum.O;
-            return TryMakeMove(x, y, move);
+            _lastStep = _lastStep == MoveEnum.O ? MoveEnum.X : MoveEnum.O;
+            return TryMakeMove(x, y, _lastStep);
         }
     }
 }
