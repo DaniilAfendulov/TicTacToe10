@@ -50,5 +50,19 @@ namespace TicTacToeTests
             board.TryMakeMove(5, 5, MoveEnum.O);
             CollectionAssert.AreEqual(expected, actual);
         }
+
+        [Test]
+        public void TryMakeMove_RewriteCell_ReturnsFalseValueNotChanged()
+        {
+            ITicTacToeBoard board = new TicTacBoard10();
+            var expectedCell = MoveEnum.X;
+            board.TryMakeMove(0, 0, expectedCell);
+            var actual = board.TryMakeMove(0, 0, MoveEnum.O);
+            Assert.That(actual, Is.False);
+
+            var actualCell = board.GetBoard()[0, 0];
+            Assert.That(actualCell, Is.EqualTo(expectedCell));          
+
+        }
     }
 }
